@@ -1,10 +1,10 @@
-package com.hancom.pdfviewerspringboot;
+package com.hancom.springbootweb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PdfViewerSpringbootApplicationTests {
+class SpringBootWebApplicationTests {
 
 	@Test
 	void contextLoads() {
