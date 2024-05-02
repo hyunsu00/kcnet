@@ -88,7 +88,16 @@ function cf_openPopup(url, width, height, id) {
     console.log("url = ", url, "width = ", width, "height = ", height, "document.forms[", id, "]", document.forms[id]);
 
     var form = document.forms[id];
-    window.location.href = url + "?lbryDocMtNo=1&userTpcd=2&userId=3&cstmSgn=4&dvsnCd=5";
+    var popupUrl = url + "?lbryDocMtNo=1&userTpcd=2&userId=3&cstmSgn=4&dvsnCd=5";
+
+    // 팝업 창을 열기 위한 윈도우 객체 생성
+    var popupWindow = window.open(popupUrl, '_blank', 'width=' + width + ',height=' + height);
+            
+    // 팝업이 차단된 경우
+    if (!popupWindow || popupWindow.closed || typeof popupWindow.closed == 'undefined') {
+        alert('팝업이 차단되었습니다. 팝업 차단을 해제해주세요.');
+    }
+
     return true;
 }
 
