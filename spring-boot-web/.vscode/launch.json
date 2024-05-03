@@ -5,16 +5,6 @@
             "name": "Spring Boot-SpringBootWebApplication<spring-boot-web>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "com.semtl.springbootweb.SpringBootWebApplication",
-            "projectName": "spring-boot-web",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-SpringBootWebApplication<spring-boot-web>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
             "mainClass": "com.hancom.springbootweb.SpringBootWebApplication",
             "projectName": "spring-boot-web",
             "args": "",
