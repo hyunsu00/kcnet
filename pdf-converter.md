@@ -2,8 +2,6 @@
 
 ## 1. DB로 부터 PDF 변환 대상건 조회
 
-###
-
 ```sql
 /*
 TB_ECL113L 테이블에서 LBRY_PRCS_TPCD 열의 값이 '04'이고 PDF_TRFM_STCD 열의 값이 'W'인 모든 열을 선택합니다.
@@ -24,7 +22,7 @@ boolean getFileForExternal(
 );
 ```
 
-### 3. PDF 문서 변환
+## 3. PDF 문서 변환
 
 ```java
 import java.net.URI;
@@ -78,7 +76,7 @@ try {
 }
 ```
 
-### 4. PDF 문서 변환 업로드
+## 4. PDF 문서 변환 업로드
 
 ```java
 // PDF 변환 사본 등록
@@ -88,7 +86,7 @@ boolean addRenditionAfterUpload(
 );    
 ```
 
-### 5 . DB 업데이트
+## 5 . DB 업데이트
 
 ```sql
 /*
