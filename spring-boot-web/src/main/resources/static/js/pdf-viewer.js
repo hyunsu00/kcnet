@@ -1,10 +1,10 @@
-var PDF_VWER_URL_1 = "http://127.0.0.1:8080/pdfviewer";           // 대민
-var PDF_VWER_URL_2 = "http://127.0.0.1:8080/pdfviewer";           // 관세행정
-var PDF_VWER_URL_3 = "http://127.0.0.1:8080/pdfviewer";           // 관세지원1
-var PDF_VWER_URL_4 = "http://127.0.0.1:8080/pdfviewer";           // 관세지원2
-var PDF_VWER_URL_5 = "http://127.0.0.1:8080/pdfviewer";           // 정보분석
-var PDF_VWER_URL_6 = "http://127.0.0.1:8080/pdfviewer";           // 여행자
-var PDF_VWER_URL_7 = "http://127.0.0.1:8080/pdfviewer";           // 여행자민원
+var PDF_VWER_URL_1 = "http://localhost:8080/get-pdfviewer";       // 대민
+var PDF_VWER_URL_2 = "http://localhost:8080/post-pdfviewer";      // 관세행정
+var PDF_VWER_URL_3 = "http://localhost:8080/pdfviewer";           // 관세지원1
+var PDF_VWER_URL_4 = "http://localhost:8080/pdfviewer";           // 관세지원2
+var PDF_VWER_URL_5 = "http://localhost:8080/pdfviewer";           // 정보분석
+var PDF_VWER_URL_6 = "http://localhost:8080/pdfviewer";           // 여행자
+var PDF_VWER_URL_7 = "http://localhost:8080/pdfviewer";           // 여행자민원
 
 var PDFVwerForm = function() {
     var bfForm;
@@ -85,6 +85,7 @@ function cf_openPdfVwer(prmt, vwerTp) {
 }
 
 function cf_openPopup(url, width, height, id) {
+/*    
     console.log("url = ", url, "width = ", width, "height = ", height, "document.forms[", id, "]", document.forms[id]);
 
     var form = document.forms[id];
@@ -97,7 +98,29 @@ function cf_openPopup(url, width, height, id) {
     if (!popupWindow || popupWindow.closed || typeof popupWindow.closed == 'undefined') {
         alert('팝업이 차단되었습니다. 팝업 차단을 해제해주세요.');
     }
+*/
+    var form = document.forms[id];
+    var formData = new FormData(form);
+    // FormData를 JSON으로 변환
+    var jsonData = {};
+    formData.forEach(function(value, key) {
+        jsonData[key] = value;
+    });
 
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
     return true;
 }
 
@@ -112,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
             userSgn: "userSgn",
             lbryDocMtNo: [1]
         };
-        var vwerTp = 1;
+        var vwerTp = 2;
         cf_openPdfVwer(prmt, vwerTp);
     });
 });
