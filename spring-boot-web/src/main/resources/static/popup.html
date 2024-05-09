@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+<head>
+    <title>pdf-viewer</title>
+    <script>
+        window.onload = function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var url = urlParams.get('url');
+            document.getElementById('pdfViewerIframe').src = url;
+        }
+    </script>
+</head>
+<body style="margin:0; padding:0; overflow:hidden; height:100%;">
+    <iframe id="pdfViewerIframe" style="overflow:hidden;height:100%;width:100%" frameborder="0"></iframe>
+</body>
+</html>

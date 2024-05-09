@@ -85,9 +85,9 @@ function cf_openPdfVwer(prmt, vwerTp) {
 }
 
 function cf_openPopup(url, width, height, id) {
-/*    
+    
     console.log("url = ", url, "width = ", width, "height = ", height, "document.forms[", id, "]", document.forms[id]);
-
+/*
     var form = document.forms[id];
     var popupUrl = url + "?lbryDocMtNo=1&userTpcd=2&userId=3&cstmSgn=4&dvsnCd=5";
 
@@ -107,7 +107,7 @@ function cf_openPopup(url, width, height, id) {
         jsonData[key] = value;
     });
 
-    fetch(url, {
+    return fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -116,12 +116,25 @@ function cf_openPopup(url, width, height, id) {
     })
     .then(response => response.text())
     .then(data => {
+        var parsedData = JSON.parse(data);
         console.log(data);
+        console.log(parsedData.url);
+
+        // 팝업 창을 열기 위한 윈도우 객체 생성
+        var popupWindow = window.open('/popup.html?url=' + encodeURIComponent(parsedData.url), '_blank', 'width=' + width + ',height=' + height);
+                        
+        // 팝업이 차단된 경우
+        if (!popupWindow || popupWindow.closed || typeof popupWindow.closed == 'undefined') {
+            alert('팝업이 차단되었습니다. 팝업 차단을 해제해주세요.');
+            return false;
+        }
+
+        return true;
     })
     .catch(error => {
         console.error('Error:', error);
+        return false;
     });
-    return true;
 }
 
 // DOMContentLoaded 이벤트 핸들러 등록
