@@ -100,4 +100,20 @@ class ViewController {
         response.put("url", "https://www.hancom.com");
         return response;
     }
+
+    @PostMapping("/link")
+    @ResponseBody
+    public Map<String, String> handleFormSubmit(
+        @RequestParam Map<String, String> formData
+    ) {
+        // 콘솔 메시지 출력
+        System.out.println("FormData: " + formData);
+        Set<Map.Entry<String, String>> entrySet = formData.entrySet();
+        for (Map.Entry<String, String> entry : entrySet) {
+            System.out.println("entry: " + entry);
+        }
+        Map<String, String> response = new HashMap<>();
+        response.put("url", "https://www.hancom.com");
+        return response;
+    }
 }

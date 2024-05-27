@@ -1,6 +1,6 @@
 var PDF_VWER_URL_1 = "http://localhost:8080/get-pdfviewer";       // 대민
 var PDF_VWER_URL_2 = "http://localhost:8080/post-pdfviewer";      // 관세행정
-var PDF_VWER_URL_3 = "http://localhost:8080/pdfviewer";           // 관세지원1
+var PDF_VWER_URL_3 = "http://localhost:8080/link";                // 관세지원1
 var PDF_VWER_URL_4 = "http://localhost:8080/pdfviewer";           // 관세지원2
 var PDF_VWER_URL_5 = "http://localhost:8080/pdfviewer";           // 정보분석
 var PDF_VWER_URL_6 = "http://localhost:8080/pdfviewer";           // 여행자
@@ -77,7 +77,7 @@ function cf_openPdfVwer(prmt, vwerTp) {
         url = PDF_VWER_URL_7;           // 여행자민원
     }
 
-    var pop = cf_openPopup(url, screen.width, screen.height, 'ECL_iElctLbryRdngCond');
+    var pop = cf_openPopup_submit(url, screen.width, screen.height, 'ECL_iElctLbryRdngCond');
 
     if (pop) {
         vwerForm.cleanForm();
@@ -137,6 +137,12 @@ function cf_openPopup(url, width, height, id) {
     });
 }
 
+function cf_openPopup_submit(url, width, height, id) {
+    console.log("url = ", url, "width = ", width, "height = ", height, "document.forms[", id, "]", document.forms[id]);
+    var form = document.forms[id];
+    form.action = url;
+    form.submit();
+}
 // DOMContentLoaded 이벤트 핸들러 등록
 document.addEventListener('DOMContentLoaded', function() {
     // pdfViewer 보기
@@ -146,9 +152,9 @@ document.addEventListener('DOMContentLoaded', function() {
             lbryBsopReffNo: "lbryBsopReffNo",
             enlrLbryBsopReffNo: "enlrLbryBsopReffNo",
             userSgn: "userSgn",
-            lbryDocMtNo: [1]
+            lbryDocMtNo: ["DOC123456"]
         };
-        var vwerTp = 2;
+        var vwerTp = 3;
         cf_openPdfVwer(prmt, vwerTp);
     });
 });
